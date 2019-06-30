@@ -24,6 +24,22 @@ t_10.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9, pageTitle="Glo
 t_10_ECO.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9, pageTitle="Economic Point of View")
 t_10_ENV.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9, pageTitle="Environment Point of View")
 t_10_SOC.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9, pageTitle="Social Point of View")
-#top 5 is the 5 best-ranked#
 
+# To show ranking #
 
+from linearOrders import *
+t_10_rankTmp = BipolarOutrankingDigraph(t_10)
+t_10_rank = NetFlowsOrder(t_10_rankTmp)
+t_10_rank.showRanking()
+
+t_10_ECO_rankTmp = BipolarOutrankingDigraph(t_10_ECO)
+t_10_ECO_rank = NetFlowsOrder(t_10_ECO_rankTmp)
+t_10_ECO_rank.showRanking()
+
+t_10_ENV_rankTmp = BipolarOutrankingDigraph(t_10_ENV)
+t_10_ENV_rank = NetFlowsOrder(t_10_ENV_rankTmp)
+t_10_ENV_rank.showRanking()
+
+t_10_SOC_rankTmp = BipolarOutrankingDigraph(t_10_SOC)
+t_10_SOC_rank = NetFlowsOrder(t_10_SOC_rankTmp)
+t_10_SOC_rank.showRanking()
