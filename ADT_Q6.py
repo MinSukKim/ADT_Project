@@ -74,14 +74,10 @@ t_10_above65= PartialPerformanceTableau(t_10, actionsSubset=['p018', 'p077', 'p0
 
 ######### 6 ###########
 
-t_10_ECO_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Eco']['criteria'])
-t_10_ENV_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Env']['criteria'])
-t_10_SOC_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Soc']['criteria'])
-
-t_10_above65.showHTMLPerformanceHeatmap()
-t_10_ECO_above65.showHTMLPerformanceHeatmap()
-t_10_ENV_above65.showHTMLPerformanceHeatmap()
-t_10_SOC_above65.showHTMLPerformanceHeatmap()
+t_10_above65.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9)
+t_10_ECO_above65.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9)
+t_10_ENV_above65.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9)
+t_10_SOC_above65.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9)
 
 ######### 7 ###########
 
