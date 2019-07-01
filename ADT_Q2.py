@@ -12,6 +12,8 @@ t_10.showHTMLPerformanceTableau()
 ######### 2 ###########
 BOD = BipolarOutrankingDigraph(t_10)
 BOD.showHTMLRelationTable()
+BOD.computeChordlessCircuits()
+BOD.showChordlessCircuits()
 
 ######### 3 ###########
 
