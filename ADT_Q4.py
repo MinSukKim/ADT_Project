@@ -64,4 +64,21 @@ for i in range(0, len(args)):
 	correlation = tmp.computeOrdinalCorrelation(kohRanks)
 	print("Fitness of Kohler's ranking: %.3f" % correlation['correlation'])
 
+######### 4 ###########
+
+#using historical quantile norms#
+perQuan = PerformanceQuantiles('quantileNorms_10', numberOfBins= 'dodeciles')
+perQuan.updateQuantiles(t_10,historySize=None)
+perQuan.showHTMLLimitingQuantiles()
+
+
+normQuanRating = NormedQuantilesRatingDigraph(perQuan,t_10)
+normQuanRating.showQuantilesRating()
+normQuanRating.showHTMLPerformanceTableau(actionsSubset=normQuanRating.newActions)
+
+######### 5 ###########
+
+######### 6 ###########
+
+######### 7 ###########
 
