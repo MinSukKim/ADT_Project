@@ -4,6 +4,7 @@ from perfTabs import *
 from sortingDigraphs import *
 
 ######### 1 ###########
+
 t_10 = XMCDA2PerformanceTableau('performanceTableau_10')
 
 t_10.showObjectives()
@@ -12,6 +13,7 @@ t_10.showActions()
 t_10.showHTMLPerformanceTableau()
 
 ######### 2 ###########
+
 BOD = BipolarOutrankingDigraph(t_10)
 BOD.showHTMLRelationTable()
 
@@ -29,12 +31,6 @@ t_10_SOC.showHTMLPerformanceHeatmap(Correlations=True, colorLevels=9, pageTitle=
 
 # To show ranking #
 
-from linearOrders import *
-t_10_rankTmp = BipolarOutrankingDigraph(t_10)
-t_10_ECO_rankTmp = BipolarOutrankingDigraph(t_10_ECO)
-t_10_ENV_rankTmp = BipolarOutrankingDigraph(t_10_ENV)
-t_10_SOC_rankTmp = BipolarOutrankingDigraph(t_10_SOC)
-
 args = [t_10, t_10_ECO, t_10_ENV, t_10_SOC]
 
 # Copeland Ranking
@@ -43,25 +39,49 @@ for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	copRanks = CopelandOrder(tmp)
 	copRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(copRanks)
-	print("Fitness of Copeland's ranking: %.3f" % correlation['correlation'])
-
+	
 # Net flow Ranking
 print("Net flow ranking: ")
 for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	netRanks = NetFlowsOrder(tmp)
 	netRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(netRanks)
-	print("Fitness of Net Flow's ranking: %.3f" % correlation['correlation'])
-
+	
 # Kohler Ranking
 print("Kohler ranking: ")
 for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	kohRanks = KohlerOrder(tmp)
 	kohRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(kohRanks)
-	print("Fitness of Kohler's ranking: %.3f" % correlation['correlation'])
+	
 
+######### 4 ###########
+
+#using historical quantile norms#
+perQuan = PerformanceQuantiles('quantileNorms_10')
+perQuan.updateQuantiles(t_10,historySize=None)
+perQuan.showHTMLLimitingQuantiles()
+
+normQuanRating = NormedQuantilesRatingDigraph(perQuan,t_10)
+normQuanRating.showQuantilesRating()
+normQuanRating.showHTMLPerformanceTableau(actionsSubset=normQuanRating.newActions)
+
+######### 5 ###########
+
+quanSorting = QuantilesSortingDigraph(t_10, limitingQuantiles=20)
+quanSorting.showQuantileOrdering()
+t_10_above65= PartialPerformanceTableau(t_10, actionsSubset=['p018', 'p077', 'p092', 'p090', 'p006', 'p054', 'p080', 'p075', 'p009', 'p013', 'p014', 'p024', 'p038', 'p042', 'p076'])
+
+######### 6 ###########
+
+t_10_ECO_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Eco']['criteria'])
+t_10_ENV_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Env']['criteria'])
+t_10_SOC_above65 = PartialPerformanceTableau(t_10_above65,criteriaSubset=t.objectives['Soc']['criteria'])
+
+t_10_above65.showHTMLPerformanceHeatmap()
+t_10_ECO_above65.showHTMLPerformanceHeatmap()
+t_10_ENV_above65.showHTMLPerformanceHeatmap()
+t_10_SOC_above65.showHTMLPerformanceHeatmap()
+
+######### 7 ###########
 
