@@ -49,7 +49,7 @@ for i in range(0, len(args)):
 print("Kohler ranking: ")
 for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
-	kohRanks = NetFlowsOrder(tmp)
+	kohRanks = KohlerOrder(tmp)
 	kohRanks.showRanking()
 	
 

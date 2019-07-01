@@ -43,8 +43,6 @@ for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	copRanks = CopelandOrder(tmp)
 	copRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(copRanks)
-	print("Fitness of Copeland's ranking: %.3f" % correlation['correlation'])
 
 # Net flow Ranking
 print("Net flow ranking: ")
@@ -52,8 +50,6 @@ for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	netRanks = NetFlowsOrder(tmp)
 	netRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(netRanks)
-	print("Fitness of Net Flow's ranking: %.3f" % correlation['correlation'])
 
 # Kohler Ranking
 print("Kohler ranking: ")
@@ -61,7 +57,6 @@ for i in range(0, len(args)):
 	tmp = BipolarOutrankingDigraph(args[i])
 	kohRanks = KohlerOrder(tmp)
 	kohRanks.showRanking()
-	correlation = tmp.computeOrdinalCorrelation(kohRanks)
-	print("Fitness of Kohler's ranking: %.3f" % correlation['correlation'])
+
 
 
